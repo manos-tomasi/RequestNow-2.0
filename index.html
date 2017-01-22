@@ -4,19 +4,21 @@
     <title>RequestNow 2.0</title>
 
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="app/css/application.css">
-    
+    <link rel="stylesheet" type="text/less" href="app/css/application.less">
+
     <!-- 1. Carregam as bibliotecas da aplicação -->
     <script src="node_modules/es6-shim/es6-shim.js"></script>
     <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="node_modules/less/dist/less.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- 2. Configura o SystemJS, que é responsável por carregar os arquivos js assincronamente -->
     <script>
       System.config({
-        packages: {        
+        packages: {
           app: {
             format: 'register',
             defaultExtension: 'js'
@@ -32,5 +34,5 @@
   <body>
     <meu-app>Carregando...</meu-app>
   </body>
-  
+
 </html>
