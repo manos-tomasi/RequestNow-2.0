@@ -1,0 +1,14 @@
+<div id="login" class="container login-center" style="width: 500px; margin: auto">
+    <form class="form-signin">
+        <h2 class="form-signin-heading title-login">RequestNow</h2>
+        <label for="inputLogin">Login</label>
+        <input [(ngModel)]="user.name" name="username" type="text" id="inputLogin" class="form-control" placeholder="Digite seu Login" autofocus required>
+        <label for="inputPassword">Senha</label>
+        <input [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Digite sua Senha" required>
+
+        <button class="btn btn-lg btn-login btn-block" type="button" (click)="login( user )"> Sign in</button>
+    </form>
+    <div id="error-login" class="alert-danger" style="display: none">
+        ERRO: Login ou senha incorretos
+    </div>
+</div>

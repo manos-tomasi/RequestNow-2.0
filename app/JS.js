@@ -1,19 +1,17 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register([], function(exports_1) {
     var JS;
     return {
-        setters: [],
-        execute: function () {
+        setters:[],
+        execute: function() {
             JS = (function () {
                 function JS() {
                 }
+                JS.Message = Message;
+                JS.$ = $;
                 return JS;
-            }());
-            JS.Message = Message;
-            JS.$ = $;
+            })();
             exports_1("JS", JS);
         }
-    };
+    }
 });
 //# sourceMappingURL=JS.js.map

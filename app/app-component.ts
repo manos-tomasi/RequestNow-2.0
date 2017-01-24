@@ -1,55 +1,71 @@
-import {Component} from '@angular/core';
-import {LoginService} from './services/login-service';
-import {User} from './data/user';
-import {JS} from './JS';
+import {Component,OnInit} from '@angular/core';
+import {LoginComponent} from './components/login-component';
+import {User} from './model/user';
 
 @Component({
     selector: 'my-app',
-    providers: [LoginService],
-    template:  `
-      <div id="login" class="container login-center" style="width: 500px; margin: auto">
-          <form class="form-signin">
-              <h2 class="form-signin-heading title-login">RequestNow</h2>
-              <label for="inputLogin">Login</label>
-              <input [(ngModel)]="user.name" name="username" type="text" id="inputLogin" class="form-control" placeholder="Digite seu Login" autofocus required>
-              <label for="inputPassword">Senha</label>
-              <input [(ngModel)]="user.password" name="password" type="password" id="inputPassword" class="form-control" placeholder="Digite sua Senha" required>
-
-              <button class="btn btn-lg btn-login btn-block" type="button" (click)="login( user )"> Sign in</button>
-          </form>
-          <div id="error-login" class="alert-danger" style="display: none">
-              ERRO: Login ou senha incorretos
-          </div>
-      </div>`
+    template:  `<login-component *ngIf="!hasLogin()" (onLogin)="onLogin( $event )" ><router-outlet></router-outlet></login-component>
+                <div *ngIf="hasLogin()">
+                  <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <img style="height: 40px; margin-right: 10px; margin-top: -8px; float: left;" src="logo.png"/>
+                              RequestNow
+                          </a>
+                      </div>
+                      <div class="nav navbar-nav navbar-right dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle navbar-brand" style="cursor: pointer;">
+                          &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
+                          {{user.name}}
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a style="cursor: pointer;" (click)="logout()">
+                              <i class="fa fa-sign-out" aria-hidden="true"></i>
+                              Logout
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </nav>
+                  <div class="center-content">
+                      <div class="content col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <a class="btn btn-strom btn-block">
+                          <i class="fa fa-home menu-icon" aria-hidden="true"></i>
+                          Home
+                        </a>
+                      </div>
+                      <router-outlet></router-outlet>
+                  </div>
+                </div>`
 } )
 
-export class AppComponent
+export class AppComponent implements OnInit
 {
-    service : LoginService;
+    private user:User;
 
-    user : User = new User();
-
-    constructor ( loginService : LoginService )
+    constructor()
     {
-        this.service = loginService;
     }
 
-    valid( user : User )
+    ngOnInit()
     {
-      return this.service.validLogin( user );
     }
 
-    login( u : User )
+    hasLogin()
     {
-        if ( this.valid( u ) )
-        {
-           JS.Message.success( "Login Correto" );
-        }
-
-        else
-        {
-           JS.Message.error( "Login Incorreto" );
-        }
+        return this.user;
     }
 
+    logout()
+    {
+        this.onLogin( null );
+    }
+
+    onLogin( evt )
+    {
+        this.user = evt;
+    }
 }
