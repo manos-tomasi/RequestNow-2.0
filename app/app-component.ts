@@ -49,7 +49,7 @@ export class AppComponent
     {
         this.loginService.onLogin.subscribe(
 
-            user => onLogin( user )
+            user => this.onLogin( user )
 
         );
     }
