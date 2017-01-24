@@ -1,12 +1,12 @@
-import {Component,OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoginComponent} from './components/login-component';
 import {User} from './model/user';
+import {LoginService} from './services/login-service';
 
 @Component({
     selector: 'my-app',
-    template:  `<login-component *ngIf="!hasLogin()" (onLogin)="onLogin( $event )" ><router-outlet></router-outlet></login-component>
-                <div *ngIf="hasLogin()">
-                  <nav class="navbar navbar-default">
+    providers: [LoginService],
+    template:  `<nav class="navbar navbar-default">
                     <div class="container-fluid">
                       <div class="navbar-header">
                         <a class="navbar-brand" href="#">
@@ -17,7 +17,7 @@ import {User} from './model/user';
                       <div class="nav navbar-nav navbar-right dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle navbar-brand" style="cursor: pointer;">
                           &nbsp;<i class="fa fa-user" aria-hidden="true"></i>
-                          {{user.name}}
+                          {{userName()}}
                         </a>
                         <ul class="dropdown-menu">
                           <li>
@@ -38,25 +38,20 @@ import {User} from './model/user';
                         </a>
                       </div>
                       <router-outlet></router-outlet>
-                  </div>
                 </div>`
 } )
 
-export class AppComponent implements OnInit
+export class AppComponent
 {
     private user:User;
 
-    constructor()
+    constructor( private loginService : LoginService )
     {
-    }
+        this.loginService.onLogin.subscribe(
 
-    ngOnInit()
-    {
-    }
+            user => onLogin( user )
 
-    hasLogin()
-    {
-        return this.user;
+        );
     }
 
     logout()
@@ -66,6 +61,19 @@ export class AppComponent implements OnInit
 
     onLogin( evt )
     {
+        console.log( "on  " + evt );
+
         this.user = evt;
+    }
+
+    hasLogin()
+    {
+
+        return this.user;
+    }
+
+    userName()
+    {
+        return this.user ? this.user.name : 'n/d';
     }
 }

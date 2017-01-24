@@ -3,10 +3,11 @@ import { ModuleWithProviders } from '@angular/core';
 
 import { AppComponent } from './app-component';
 import { HomeComponent } from './components/home-component';
+import { LoginComponent } from './components/login-component';
 
 const APP_ROUTES: Routes =
 [
-    { path: '', component : AppComponent },
+    { path: '', component : LoginComponent },
     { path: 'home', component : HomeComponent }
 ];
 

@@ -1,5 +1,6 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoginService} from '../services/login-service';
+import { Router } from '@angular/router';
 import {User} from '../model/user';
 import {JS} from '../JS';
 
@@ -9,26 +10,20 @@ import {JS} from '../JS';
     templateUrl: 'app/components/login-component.html'
 } )
 
-export class LoginComponent implements OnInit
+export class LoginComponent
 {
     private user : User;
 
-    @Output()  onLogin = new EventEmitter<User>();
-
-    constructor ( private loginService : LoginService ){}
-
-    ngOnInit()
+    constructor ( private loginService : LoginService, private router : Router  )
     {
-       this.init();
+        this.init();
     }
 
     login( u : User )
     {
-        u = this.loginService.validLogin( u );
-
-        if ( u )
+        if ( this.loginService.validLogin( u ) )
         {
-            this.loginService.redirect();
+            this.router.navigate( ['/home'] );
         }
 
         else
@@ -45,10 +40,8 @@ export class LoginComponent implements OnInit
                 {
                     JS.$( '#error-login' ).hide( 'fade' );
                 }, 3000 );
-              } );
+            } );
         }
-
-        this.onLogin.emit( u );
     }
 
     init()

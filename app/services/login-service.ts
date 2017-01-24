@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable, EventEmitter } from '@angular/core';
 import { User } from '../model/user';
 
 @Injectable()
 export class LoginService
 {
-    constructor( private router : Router ){}
+    public onLogin :EventEmitter<User>;
+
+    constructor()
+    {
+      this.onLogin =  new EventEmitter();
+    }
 
     validLogin( user : User )
     {
-        return user.password === 'admin' &&
-               user.name     === 'artur.tomasi' ?
-               user : null;
-    }
+        let valid:boolean = user.password === 'admin' &&
+                            user.name     === 'artur.tomasi';
 
-    redirect()
-    {
-        this.router.navigate( ['/home'] );
+        this.onLogin.emit( valid ? user : null );
+
+        return valid;
     }
 }
