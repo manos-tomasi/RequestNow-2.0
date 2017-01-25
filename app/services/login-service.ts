@@ -1,23 +1,53 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../model/user';
+import { EmitterService } from '../services/emitter-service';
 
 @Injectable()
 export class LoginService
 {
-    public onLogin :EventEmitter<User>;
+    private authenticate : boolean = false;
 
-    constructor()
-    {
-      this.onLogin =  new EventEmitter();
-    }
+    private activeUser : User;
 
-    validLogin( user : User )
+    constructor( private router : Router ){}
+
+    login( user : User )
     {
-        let valid:boolean = user.password === 'admin' &&
+        this.authenticate = user.password === 'admin' &&
                             user.name     === 'artur.tomasi';
 
-        this.onLogin.emit( valid ? user : null );
+        this.activeUser = this.authenticate ? user : null;
 
-        return valid;
+        this.redirect();
+    }
+
+    logout()
+    {
+        this.activeUser = null;
+
+        this.authenticate = false;
+
+        this.redirect();
+    }
+
+    redirect()
+    {
+        EmitterService.on( EmitterService.ON_LOGIN ).emit( this.activeUser );
+
+        if ( this.isAuthenticate() )
+        {
+            this.router.navigate( ['/home'] );
+        }
+
+        else
+        {
+            this.router.navigate( ['/'] );
+        }
+    }
+
+    isAuthenticate()
+    {
+        return this.authenticate;
     }
 }

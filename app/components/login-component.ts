@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {LoginService} from '../services/login-service';
-import { Router } from '@angular/router';
 import {User} from '../model/user';
 import {JS} from '../JS';
 
@@ -14,19 +13,16 @@ export class LoginComponent
 {
     private user : User;
 
-    constructor ( private loginService : LoginService, private router : Router  )
+    constructor ( private loginService : LoginService )
     {
         this.init();
     }
 
     login( u : User )
     {
-        if ( this.loginService.validLogin( u ) )
-        {
-            this.router.navigate( ['/home'] );
-        }
+        this.loginService.login( u );
 
-        else
+        if ( ! this.loginService.isAuthenticate() )
         {
             this.init();
 
