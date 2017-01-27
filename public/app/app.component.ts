@@ -10,7 +10,7 @@ import {Emitter} from './util/emitter';
                     <div class="container-fluid">
                       <div class="navbar-header">
                         <a class="navbar-brand" href="#">
-                            <img style="height: 40px; margin-right: 10px; margin-top: -8px; float: left;" src="logo.png"/>
+                            <img style="height: 40px; margin-right: 10px; margin-top: -8px; float: left;" src="favicon.png"/>
                               RequestNow
                           </a>
                       </div>
