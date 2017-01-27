@@ -1,7 +1,7 @@
 import {Injectable, EventEmitter} from '@angular/core';
 
 @Injectable()
-export class EmitterService
+export class Emitter
 {
     static ON_LOGIN = 'onLogin';
 

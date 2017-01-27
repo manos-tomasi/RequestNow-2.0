@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
-import {LoginComponent} from './components/login-component';
-import {User} from './model/user';
-import {LoginService} from './services/login-service';
-import {EmitterService} from './services/emitter-service';
+import {LoginComponent} from './login/login.component';
+import {User} from './login/user';
+import {LoginService} from './login/login.service';
+import {Emitter} from './util/emitter';
 
 @Component({
     selector: 'my-app',
-    providers: [LoginService],
     template:  `<nav *ngIf="hasLogin()" class="navbar navbar-default">
                     <div class="container-fluid">
                       <div class="navbar-header">
@@ -48,7 +47,7 @@ export class AppComponent
 
     constructor ( private loginService : LoginService )
     {
-        EmitterService.on( EmitterService.ON_LOGIN ).subscribe(
+        Emitter.on( Emitter.ON_LOGIN ).subscribe(
 
             user => this.onLogin( user )
 

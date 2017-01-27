@@ -1,9 +1,8 @@
-.tmp
+/dist
+/tmp
+/node_modules
+npm-debug.log
+/typings
 .DS_Store
-.DS_Store?
-node_modules/
-**/*.js
-**/*.map
-dist/
-logs/
-*.ini
+Thumbs.db
+public/vendor

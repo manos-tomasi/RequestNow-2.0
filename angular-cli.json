@@ -1,0 +1,45 @@
+{
+  "project": {
+    "version": "1.0.0-beta.26",
+    "name": "RequestNow"
+  },
+  "apps": [
+    {
+      "root": "public",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "app",
+      "mobile": false,
+      "styles": [
+        "vendor/bootstrap/dist/css/bootstrap.min.css",
+        "vendor/sweetalert/dist/sweetalert.css",
+        "vendor/jquery-ui/themes/smoothness/jquery-ui.min.css",
+        "vendor/components-font-awesome/css/font-awesome.min.css",
+        "assets/application.less"
+      ],
+      "scripts" : [
+          "vendor/less/dist/less.min.js",
+          "vendor/jquery/dist/jquery.min.js",
+          "vendor/jquery-ui/jquery-ui.min.js",
+          "vendor/bootstrap/dist/js/bootstrap.min.js",
+          "vendor/sweetalert/dist/sweetalert.min.js",
+          "assets/Message.js"
+      ]
+    }
+  ],
+  "defaults": {
+    "styleExt": "css",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../model/user';
-import { EmitterService } from '../services/emitter-service';
+import { User } from './user';
+import { Emitter } from '../util/emitter';
 
 @Injectable()
 export class LoginService
@@ -33,7 +33,7 @@ export class LoginService
 
     redirect()
     {
-        EmitterService.on( EmitterService.ON_LOGIN ).emit( this.activeUser );
+        Emitter.on( Emitter.ON_LOGIN ).emit( this.activeUser );
 
         if ( this.isAuthenticate() )
         {
