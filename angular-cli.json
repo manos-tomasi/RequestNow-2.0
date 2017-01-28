@@ -18,7 +18,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "vendor/bootstrap/dist/css/bootstrap.min.css",
+        "vendor/materialize/dist/css/materialize.min.css",
         "vendor/sweetalert/dist/sweetalert.css",
         "vendor/jquery-ui/themes/smoothness/jquery-ui.min.css",
         "vendor/components-font-awesome/css/font-awesome.min.css",
@@ -28,9 +28,10 @@
           "vendor/less/dist/less.min.js",
           "vendor/jquery/dist/jquery.min.js",
           "vendor/jquery-ui/jquery-ui.min.js",
-          "vendor/bootstrap/dist/js/bootstrap.min.js",
+          "vendor/materialize/dist/js/materialize.min.js",
           "vendor/sweetalert/dist/sweetalert.min.js",
-          "assets/Message.js"
+          "assets/Message.js",
+          "assets/application.js"
       ]
     }
   ],

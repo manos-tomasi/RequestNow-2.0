@@ -1,4 +1,5 @@
 var express        = require( 'express' ),
+    load           = require( 'express-load' ),
     path           = require( 'path' ),
     bodyParser     = require( 'body-parser' ),
     methodOverride = require( 'method-override' ),
@@ -15,7 +16,13 @@ module.exports = function()
 
     app.set( 'view engine', 'ejs' );
 
-    app.use( '/api', require( '../app/routes/api' ) )
+    /*app.use( '/api', require( '../app/routes/api' ) );*/
+
+    load( 'models' , { cwd : 'app' } )
+  	  .then( 'controllers' )
+  	  .then( 'routes' )
+  	  .into( app );
+
     app.use( express.static( path.join( __dirname, '../dist' ) ) );
 
   	app.use( bodyParser.urlencoded( { extended: true, limit: '50mb' } ) );

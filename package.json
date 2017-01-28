@@ -4,7 +4,8 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng build  && node server"
+    "test" : "ng serve -w",
+    "start": "ng build && node server"
   },
   "private": true,
   "dependencies": {

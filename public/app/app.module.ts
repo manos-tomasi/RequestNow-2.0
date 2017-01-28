@@ -8,14 +8,17 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login/login.service';
+import { AppGuard } from './app.guard';
 
 import { Routing } from './app.routes';
+import { HomeButtonComponent } from './home-button/home-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    HomeButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,10 @@ import { Routing } from './app.routes';
     HttpModule,
     Routing
   ],
-  providers: [ LoginService ],
+  providers: [
+    LoginService,
+    AppGuard
+  ],
   bootstrap: [AppComponent]
 })
 

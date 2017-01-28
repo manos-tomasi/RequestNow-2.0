@@ -1,9 +1,7 @@
-const express = require('express');
-const router = express.Router();
-
-/* GET api listing. */
-router.get('/22', (req, res) => {
-  res.send('api wwwwwwSSS');
-});
-
-module.exports = router;
+module.exports = function ( app )
+{
+    app.get( '/api/service', ( req, res ) =>
+    {
+        res.send( "<div>OI</div>" );
+    } );
+}

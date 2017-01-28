@@ -1,3 +1,62 @@
-<h1>
-  {{title}}
-</h1>
+<nav *ngIf="hasLogin()">
+  <div class="nav-wrapper">
+    <img style="width: 45px; margin: 10px;" src="favicon.ico"/>
+    <a routerLink="/home" class="brand-logo">
+      RequestNow
+    </a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <a role="div" class="dropdown-button" onclick="openDropdown( this )" data-activates="dropdown">
+          <div>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>{{userName()}}</span>
+            <i class="material-icons right">arrow_drop_down</i>
+          </div>
+        </a>
+        <ul id='dropdown' class='dropdown-content'>
+          <li>
+            <a role="div" (click)="logout()">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              Logout
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="row">
+    <div *ngIf="hasLogin()" class="col s2">
+      <ul class="collapsible" data-collapsible="accordion">
+       <li>
+         <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+       <li>
+         <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+         <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+       </li>
+     </ul>
+    </div>
+    <router-outlet class="col s10"></router-outlet>
+</div>
