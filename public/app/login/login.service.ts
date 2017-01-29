@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from './user';
+import { User } from '../user/user';
 import { Emitter } from '../util/emitter';
 
 @Injectable()

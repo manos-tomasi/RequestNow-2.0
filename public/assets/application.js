@@ -1,7 +1,12 @@
 
-function openDropdown( element )
+function dropdown( elem )
 {
-    $( element ).dropdown( { belowOrigin: true } );
+    $( elem ).dropdown( { belowOrigin: true } );
 
-    $( element ).dropdown('open');
+    $( elem ).dropdown('open');
+}
+
+function collapsible( elem )
+{
+   $( elem ).parent().parent().collapsible( { accordion: false } );
 }

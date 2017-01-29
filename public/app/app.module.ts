@@ -12,13 +12,23 @@ import { AppGuard } from './app.guard';
 
 import { Routing } from './app.routes';
 import { HomeButtonComponent } from './home-button/home-button.component';
+import { RequestComponent } from './request/request.component';
+import { DispatchComponent } from './dispatch/dispatch.component';
+import { UserComponent } from './user/user.component';
+import { ListComponent } from './list/list.component';
+import { ApplicationButtonComponent } from './application-button/application-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HomeButtonComponent
+    HomeButtonComponent,
+    RequestComponent,
+    DispatchComponent,
+    UserComponent,
+    ListComponent,
+    ApplicationButtonComponent,
   ],
   imports: [
     BrowserModule,

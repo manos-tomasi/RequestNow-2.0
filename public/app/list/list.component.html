@@ -1,0 +1,7 @@
+<ul *ngIf="model" class="collection content">
+  <li *ngFor="let item of model.getItems();"
+      [class]="model.getSelectedItem() === item ? 'list-content-selected' : 'list-content'"
+      (click)="select( item )">
+    <span [innerHTML]="model.onRenderer( item )"></span>
+  </li>
+</ul>

@@ -1,11 +1,56 @@
-<div class="fixed-action-btn vertical">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-  </ul>
-</div>
+<ul class="collapsible content" data-collapsible="accordion">
+   <li>
+      <div routerLink="/request" class="collapsible-header">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          Requisições
+      </div>
+   </li>
+   <li>
+      <div routerLink="/dispatch" class="collapsible-header">
+          <i class="fa fa-gavel" aria-hidden="true"></i>
+          Despachos
+      </div>
+   </li>
+   <li>
+      <div class="collapsible-header">
+          <i class="fa fa-line-chart" aria-hidden="true"></i>
+          Relatórios
+      </div>
+   </li>
+   <li>
+      <div onclick="collapsible( this )" class="collapsible-header">
+          <i class="fa fa-database" aria-hidden="true"></i>
+          Cadastros
+      </div>
+      <div class="collapsible-body">
+        <div routerLink="/user" class="collapsible-header">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            Usuários
+        </div>
+        <div class="collapsible-header">
+            <i class="fa fa-sitemap" aria-hidden="true"></i>
+            Setores
+        </div>
+        <div class="collapsible-header">
+            <i class="fa fa-bullseye" aria-hidden="true"></i>
+            Tipos
+        </div>
+        <div class="collapsible-header">
+            <i class="fa fa-reorder" aria-hidden="true"></i>
+            Categorias
+        </div>
+        <div class="collapsible-header">
+            <i class="fa fa-cubes" aria-hidden="true"></i>
+            Campos
+        </div>
+        <div class="collapsible-header">
+            <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+            Rotas
+        </div>
+        <div class="collapsible-header">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+            Permissões
+        </div>
+      </div>
+   </li>
+</ul>

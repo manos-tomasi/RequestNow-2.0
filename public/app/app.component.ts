@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {User} from './login/user';
+import {User} from './user/user';
 import {LoginService} from './login/login.service';
 import {Emitter} from './util/emitter';
 
