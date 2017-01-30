@@ -5,12 +5,6 @@ export class RequestList
   extends
       AbstractList<Request>
   {
-      constructor()
-      {
-        super();
-        console.log( "asdasdsadasd" );
-      }
-
       onRenderer( request : Request )
       {
           return "<table>" +

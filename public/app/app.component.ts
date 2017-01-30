@@ -10,7 +10,7 @@ import {Emitter} from './util/emitter';
 
 export class AppComponent
 {
-    private user:User;
+    private user : User;
 
     constructor ( private loginService : LoginService )
     {
@@ -36,10 +36,5 @@ export class AppComponent
     hasLogin()
     {
         return this.user;
-    }
-
-    userName()
-    {
-        return this.user ? this.user.name : 'n/d';
     }
 }

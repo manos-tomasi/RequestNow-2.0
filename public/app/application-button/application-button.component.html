@@ -1,10 +1,10 @@
-<div class="fixed-action-btn vertical">
+<div class="fixed-action-btn horizontal">
     <a class="btn-floating btn-large">
       <i class="fa fa-reorder" aria-hidden="true"></i>
     </a>
     <ul>
       <li *ngFor="let action of actions">
-        <a (click)="action.onAction()" title="{{action.getLabel()}}" class="btn-floating">
+        <a (click)="action.onAction( action.parent )" title="{{action.getLabel()}}" class="btn-floating">
           <i [class]="action.getIcon()" aria-hidden="true"></i>
         </a>
       </li>

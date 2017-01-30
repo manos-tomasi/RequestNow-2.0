@@ -22,22 +22,45 @@ export class RequestComponent
         this.list.addItem( new Request() );
     }
 
-    add()
+    add( self : this )
     {
-        
-        console.log( this.list );
+        self.list.addItem( new Request( new Date().toDateString() ) );
+    }
 
-        this.list.addItem( new Request() );
+    delete( self : this )
+    {
 
-        Message.alert( this.list.getItems() );
+        let item = self.list.getSelectedItem();
+
+        if ( item )
+        {
+            Message.confirm( "Tem cer", function()
+            {
+                self.list.removeItem( item );
+            } );
+        }
+
+        else
+        {
+            Message.alert( "Selecione uma Requisição!" );
+        }
+    }
+
+    edit( self : this )
+    {
+        self.list.addItem( new Request( new Date().toDateString() ) );
     }
 
     private list : RequestList = new RequestList();
 
-    private addAction : ApplicationButton = new ApplicationButton( "fa-plus", "Editar Requisição", this.add );
+    private addAction    : ApplicationButton = new ApplicationButton( this, "fa-plus",   "Adicionar Requisição", this.add );
+    private editAction   : ApplicationButton = new ApplicationButton( this, "fa-edit",   "Editar Requisição",    this.edit );
+    private deleteAction : ApplicationButton = new ApplicationButton( this, "fa-remove", "Deletar Requisição",   this.delete );
 
     private actions : Array<ApplicationButton> =
     [
-        this.addAction
+        this.addAction,
+        this.editAction,
+        this.deleteAction
     ]
 }

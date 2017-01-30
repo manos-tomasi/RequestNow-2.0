@@ -3,12 +3,14 @@ export class ApplicationButton
     private icon  : string;
     private label : string;
     public onAction : Function;
+    public parent : any;
 
-    constructor( icon: string, label: string, onAction : Function )
+    constructor( parent: any, icon: string, label: string, onAction : Function )
     {
         this.icon = icon;
         this.label = label;
         this.onAction = onAction;
+        this.parent = parent;
     }
 
     getIcon()
@@ -27,5 +29,10 @@ export class ApplicationButton
     getLabel()
     {
         return this.label;
+    }
+
+    getParent()
+    {
+        return this.parent;
     }
 }

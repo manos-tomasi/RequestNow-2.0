@@ -1,8 +1,7 @@
 /* global require, module, app */
 
 var passport         = require( 'passport' ),
-    mongoose         = require( 'mongoose' ),
-    User             = mongoose.model( 'User' );
+    Database         = require( '../app/database.js' )
     LocalStrategy    = require('passport-local').Strategy;
     FacebookStrategy = require( 'passport-facebook' ).Strategy;
 
@@ -61,19 +60,23 @@ module.exports = function()
          */
         function( login, password, done )
         {
-            User.findOne( { login: login }, function ( error, user )
+            console.log( login );
+            console.log( password );
+            console.log( "heerrre" );
+
+            var _query = "select * from users where login = '" + login + "' and password = '" + password + "'";
+
+            Database.getInstance().query( _query, function( result )
             {
-                if ( error )
-                {
-                    return done( error );
-                }
+                  console.log( "hey " );
+                  console.log( result );
 
-                if ( ! user || user.password !== password )
-                {
-                    return done( 'Confirme o Login e/ou Senha', false);
-                }
+                  if ( ! result )
+                  {
+                      return done( 'Confirme o Login e/ou Senha', false);
+                  }
 
-                return done( null, user );
+                  return done( null, result );
             } );
         }
     ) );
@@ -83,7 +86,7 @@ module.exports = function()
      */
     passport.serializeUser( function( user, done )
     {
-        done( null, user._id );
+        done( null, user.id );
     } );
 
     /**
@@ -91,13 +94,10 @@ module.exports = function()
      */
     passport.deserializeUser( function( id, done )
     {
-        User.findById( id ).exec( function ( error, user )
-        {
-            if ( error )
-            {
-                return done( error );
-            }
+        var _query = "select * from users where id = " + id;
 
+        Database.getInstance().query( _query, function( result )
+        {
             done( null, user );
         } );
     } );

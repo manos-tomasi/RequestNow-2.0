@@ -19,7 +19,7 @@ export abstract class AbstractList<T>
     }
 
     public setItems( items : Array<T> )
-    {
+    {      
         this.items = items;
     }
 
@@ -31,6 +31,14 @@ export abstract class AbstractList<T>
         }
 
         this.items.push( item );
+    }
+
+    public removeItem( item : T )
+    {
+        if ( item )
+        {
+            this.items = this.items.filter( i => i !== item );
+        }
     }
 
     public getSelectedItem() : T

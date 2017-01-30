@@ -1,0 +1,17 @@
+{
+   "database" : {
+        "database" : "requestnow_web",
+        "user" : "artur",
+        "password" : "admin",
+        "port" : 5432,
+        "host" : "localhost",
+        "max" : 10,
+        "idleTimeoutMillis" : 3000
+   },
+   "email" : {
+        "service" : "smtp.gmail.com",
+        "from" : "\"Strom\"<tomasi.artur@gmail.com>",
+        "user" : "tomasi.artur@gmail.com",
+        "password" : "xxxx"
+   }
+}

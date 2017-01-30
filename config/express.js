@@ -16,8 +16,6 @@ module.exports = function()
 
     app.set( 'view engine', 'ejs' );
 
-    /*app.use( '/api', require( '../app/routes/api' ) );*/
-
     load( 'models' , { cwd : 'app' } )
   	  .then( 'controllers' )
   	  .then( 'routes' )
@@ -38,9 +36,8 @@ module.exports = function()
   	app.disable( 'x-powered-by' );
 
     app.get( '*', (req, res) => {
-      res.sendFile( path.join(__dirname, '../dist/index.html') );
+      res.sendFile( path.join( __dirname, '../dist/index.html' ) );
     } );
-
 
     return app;
 }
