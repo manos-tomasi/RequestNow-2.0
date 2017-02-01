@@ -1,67 +1,28 @@
-var _pg     = require( 'pg' );
 var _config = require( '../config/config.json' );
-var _pool;
+var mongoose = require( 'mongoose' );
 
-function Database()
+var connection;
+
+module.exports = function()
 {
-     this._pool = new _pg.Pool( _config.database );
-}
+    connection =  mongoose.connect(  _config.database.uri, { server: {poolSize: 15} } );
 
-Database.getInstance = function()
-{
-    if ( ! Database._instance )
+    mongoose.connection.on( 'connected', function()
     {
-        Database._instance =  new Database();
-    }
+        console.log( 'MongoDB Connectado !!' );
+    });
 
-    return Database._instance;
-}
-
-Database.prototype.query = function( sql, callback )
-{
-    this._pool.connect( function( err, client, done )
+    mongoose.connection.on( 'disconnected', function()
     {
-        if( err )
-        {
-            return console.error( 'error fetching client from pool', err );
-        }
+        console.log( 'MongoDB Desconnectado !!' );
+    });
 
-        client.query( sql, function( err, result )
-        {
-            //call `done()` to release the client back to the pool
-            done();
-
-            if( err )
-            {
-                return console.error( 'error running query', err );
-            }
-
-            callback( result.rows );
-        } );
+    process.on( 'SIGINT', function()
+    {
+          mongoose.connection.close( function ()
+          {
+              console.log( 'MongoDB Desconnectado !!' );
+              process.exit( 0 );
+          } );
     } );
-
-    this._pool.on( 'error', function ( err, client )
-    {
-        console.error( 'idle client error', err.message, err.stack );
-    } );
-}
-
-Database.prototype.command = function( sql )
-{
-    this._pool.connect( function( err, client, done )
-    {
-        if( err )
-        {
-            return console.error( 'error fetching client from pool', err );
-        }
-
-        client.query( sql );
-    } );
-
-    this._pool.on( 'error', function ( err, client )
-    {
-        console.error( 'idle client error', err.message, err.stack );
-    } );
-}
-
-module.exports = Database;
+};

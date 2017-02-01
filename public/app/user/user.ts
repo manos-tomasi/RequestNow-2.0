@@ -1,4 +1,8 @@
+import { Model } from '../util/model';
+
 export class User
+  extends
+    Model
 {
      name       : string = "";
      ref_sector : string = "";

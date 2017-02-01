@@ -11,14 +11,9 @@ module.exports = function( app )
         res.redirect( "/" );
     } );
 
-    app.post( '/api/login', function( req, res )
+    app.post( '/api/login', passport.authenticate('local' ), function( req, res )
     {
-        console.log( "req.user" );
-        console.log( req );
-        console.log( req.body );
-        console.log( req.data );
-
-        res.json( req.body );
+        res.json( req.user || {} );
     } );
 
     app.post( '/api/logout', function( req, res )

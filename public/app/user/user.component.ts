@@ -16,7 +16,7 @@ export class UserComponent
 {
     constructor( private service : UserService )
     {
-        service.users().subscribe(
+        service.getAll().subscribe(
             users => this.list.setItems( users )
         );
     }
@@ -31,15 +31,17 @@ export class UserComponent
 
         if ( item )
         {
-            Message.confirm( "Tem certeza que deseja deletar " + item, function()
+            Message.confirm( "Tem certeza que deseja deletar " + item.name, function()
             {
                 self.list.removeItem( item );
+
+                self.service.delete( item );
             } );
         }
 
         else
         {
-            Message.alert( "Selecione uma usuário!" );
+            Message.alert( "Selecione um usuário!" );
         }
     }
 

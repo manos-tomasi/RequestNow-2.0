@@ -1,12 +1,6 @@
 {
    "database" : {
-        "database" : "requestnow_web",
-        "user" : "artur",
-        "password" : "admin",
-        "port" : 5432,
-        "host" : "localhost",
-        "max" : 10,
-        "idleTimeoutMillis" : 3000
+        "uri" : "mongodb://artur:admin@localhost:27017/requestnow"
    },
    "email" : {
         "service" : "smtp.gmail.com",

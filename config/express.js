@@ -16,11 +16,6 @@ module.exports = function()
 
     app.set( 'view engine', 'ejs' );
 
-    load( 'models' , { cwd : 'app' } )
-  	  .then( 'controllers' )
-  	  .then( 'routes' )
-  	  .into( app );
-
     app.use( express.static( path.join( __dirname, '../dist' ) ) );
 
   	app.use( bodyParser.urlencoded( { extended: true, limit: '50mb' } ) );
@@ -34,6 +29,11 @@ module.exports = function()
   	app.use( helmet.hidePoweredBy( { setTo: 'PHP 5.5.14' } ) );
   	app.use( helmet.xssFilter() );
   	app.disable( 'x-powered-by' );
+
+    load( 'models' , { cwd : 'app' } )
+      .then( 'controllers' )
+      .then( 'routes' )
+      .into( app );
 
     app.get( '*', (req, res) => {
       res.sendFile( path.join( __dirname, '../dist/index.html' ) );

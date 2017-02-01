@@ -5,18 +5,11 @@ import { AbstractService } from '../util/abstract.service';
 
 @Injectable()
 export class UserService
-  extends
-    AbstractService
+    extends
+        AbstractService<User>
 {
-    constructor( private http : Http )
+    constructor( _http : Http )
     {
-        super();
-    }
-
-    users()
-    {
-       return this.http.get( "/api/users" )
-                       .map( this.extractData )
-                       .catch( this.handleError );
+        super( 'api/users/', _http );
     }
 }

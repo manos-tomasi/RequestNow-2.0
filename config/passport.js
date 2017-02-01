@@ -60,23 +60,20 @@ module.exports = function()
          */
         function( login, password, done )
         {
-            console.log( login );
-            console.log( password );
-            console.log( "heerrre" );
+            var _query = "select * from users where login = '" + login + "' and password = '" + password + "';";
 
-            var _query = "select * from users where login = '" + login + "' and password = '" + password + "'";
+            console.log( _query );
 
             Database.getInstance().query( _query, function( result )
             {
-                  console.log( "hey " );
-                  console.log( result );
+                  var res = result[0];
 
-                  if ( ! result )
+                  if ( ! res )
                   {
-                      return done( 'Confirme o Login e/ou Senha', false);
+                      return done( 'Confirme o Login e/ou Senha', false );
                   }
 
-                  return done( null, result );
+                  return done( null, res );
             } );
         }
     ) );
@@ -86,6 +83,8 @@ module.exports = function()
      */
     passport.serializeUser( function( user, done )
     {
+        console.log( user );
+
         done( null, user.id );
     } );
 

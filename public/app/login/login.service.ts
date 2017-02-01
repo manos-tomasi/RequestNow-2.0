@@ -8,27 +8,26 @@ import { AbstractService } from '../util/abstract.service';
 @Injectable()
 export class LoginService
     extends
-        AbstractService
+      AbstractService<User>
 {
     private activeUser : User;
 
-    constructor( private router : Router , private http : Http )
+    constructor( private router : Router, _http : Http)
     {
-        super();
+        super( '/api/login/', _http );
     }
 
 
-    /*login( user : User )
-    {
-      console.log( user );
-      console.log(" user" );
-
-        this.http.post( "/api/login/", user, this.options )
-                 .map( this.extractData )
-                 .catch( this.handleError ).subscribe( user => this.activeUser = user );
-    }*/
-
     login( user : User )
+    {
+        let _user = { username: user.login,
+                      password: user.password };
+
+        this._http.post( this._url, JSON.stringify( _user ), this._options )
+                  .map( this.extractData )
+                  .subscribe( user => this.activeUser = user );
+   }
+    /*login( user : User )
     {
         let authenticate = user.password === 'admin' &&
                            user.name     === 'artur.tomasi';
@@ -41,7 +40,7 @@ export class LoginService
         this.activeUser = authenticate ? user : null;
 
         this.redirect();
-    }
+    }*/
 
     logout()
     {

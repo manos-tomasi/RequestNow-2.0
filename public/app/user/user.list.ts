@@ -13,7 +13,7 @@ export class UserList
                         "<i class=\"fa fa-user\" aria-hidden=\"true\"></i>" +
                       "</td>" +
                       "<td colspan=\"3\" class=\"list-title\">" +
-                        user.name +
+                        user.name.toUpperCase() +
                       "</td>" +
                     "</tr>" +
                     "<tr>" +

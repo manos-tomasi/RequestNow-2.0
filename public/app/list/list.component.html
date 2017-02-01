@@ -1,5 +1,10 @@
 <ul *ngIf="model" class="collection content">
-  <li *ngFor="let item of model.getItems();"
+  <li class="input-field col s12">
+      <i class="fa fa-filter prefix"></i>
+      <input id="find" type="text" [(ngModel)]="filter">
+      <label for="find">Buscar</label>
+  </li>
+  <li *ngFor="let item of getItems();"
       [class]="model.getSelectedItem() === item ? 'list-content-selected' : 'list-content'"
       (click)="select( item )">
     <span [innerHTML]="model.onRenderer( item )"></span>
