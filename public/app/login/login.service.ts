@@ -17,20 +17,10 @@ export class LoginService
         super( '/api/login/', _http );
     }
 
-
     login( user : User )
     {
-        let _user = { username: user.login,
-                      password: user.password };
-
-        this._http.post( this._url, JSON.stringify( _user ), this._options )
-                  .map( this.extractData )
-                  .subscribe( user => this.activeUser = user );
-   }
-    /*login( user : User )
-    {
         let authenticate = user.password === 'admin' &&
-                           user.name     === 'artur.tomasi';
+                           user.login    === 'artur.tomasi';
 
         user.name = "Artur Tomasi";
         user.login = "artur.tomasi";
@@ -40,7 +30,7 @@ export class LoginService
         this.activeUser = authenticate ? user : null;
 
         this.redirect();
-    }*/
+    }
 
     logout()
     {
@@ -66,6 +56,7 @@ export class LoginService
 
     isAuthenticate()
     {
-        return this.activeUser !== null;
+        return this.activeUser !== null &&
+               this.activeUser !== undefined;
     }
 }

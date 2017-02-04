@@ -7,5 +7,14 @@
         "from" : "\"Strom\"<tomasi.artur@gmail.com>",
         "user" : "tomasi.artur@gmail.com",
         "password" : "xxxx"
+   },
+   "knex" : {
+     "client": "postgres",
+     "connection": {
+        "host" : "127.0.0.1",
+        "user" : "artur",
+        "password" : "admin",
+        "database" : "requestnow_web"
+     }
    }
 }

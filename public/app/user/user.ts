@@ -1,4 +1,5 @@
 import { Model } from '../util/model';
+import { Sector } from '../sector/sector';
 
 export class User
   extends
@@ -6,9 +7,9 @@ export class User
 {
      name       : string = "";
      ref_sector : string = "";
-     state      : string = "";
      password   : string = "";
      login      : string = "";
      mail       : string = "";
      role       : string = "";
+     sector     : Sector;
 }

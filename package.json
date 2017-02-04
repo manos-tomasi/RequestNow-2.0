@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "test" : "ng serve -w",
+    "test": "ng serve -w",
     "start": "ng build && node server"
   },
   "private": true,
@@ -19,21 +19,23 @@
     "@angular/router": "^3.3.1",
     "body-parser": "^1.16.0",
     "cookie-parser": "^1.4.3",
+    "core-js": "^2.4.1",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
     "express-load": "^1.1.15",
     "express-session": "^1.14.0",
+    "helmet": "^2.1.1",
+    "knex": "^0.12.6",
     "method-override": "^2.3.6",
     "node-ini": "^1.0.0",
+    "objection": "^0.6.2",
     "passport": "^0.3.2",
-    "ejs": "^2.4.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
-    "helmet": "^2.1.1",
-    "core-js": "^2.4.1",
-    "express": "^4.14.0",
+    "pg": "^6.1.0",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.2",
-    "pg": "^6.1.0"
+    "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.3.1",

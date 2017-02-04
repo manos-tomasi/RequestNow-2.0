@@ -1,7 +1,6 @@
 /* global require, module, app */
 
 var passport         = require( 'passport' ),
-    Database         = require( '../app/database.js' )
     LocalStrategy    = require('passport-local').Strategy;
     FacebookStrategy = require( 'passport-facebook' ).Strategy;
 

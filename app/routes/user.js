@@ -1,33 +1,8 @@
-function checkAuthenticated( req, res, next )
-{
-    if ( req.isAuthenticated() )
-    {
-        return next();
-    }
-
-    else
-    {
-        res.status( '401' ).json( 'Sem autorização' );
-    }
-
-};
-
-var Database  = require( '../database.js' );
+'use strict';
 
 module.exports = function ( app )
 {
-    app.get( '/api/users', ( req, res ) =>
-    {
-
-      console.log( "get");
-        var db = Database.getInstance();
-
-        db.query( "select * from users order by id desc;", function( rows )
-        {
-            res.json( rows );
-        } );
-
-    } );
+    app.get( '/api/users', app.controllers.UserController.getUsers );
 
     app.get( '/api/users/:id', ( req, res ) =>
     {console.log( "post");

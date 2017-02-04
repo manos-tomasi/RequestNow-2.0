@@ -6,10 +6,18 @@ var express        = require( 'express' ),
     helmet 		     = require( 'helmet' ),
     session        = require( 'express-session' ),
     cookieParser   = require( 'cookie-parser' ),
+    knex           = require( 'knex' ),
+    config         = require( './config.json' );
+    objection      = require( 'objection' );
     passport       = require( 'passport' );
 
 module.exports = function()
 {
+
+    var _knex = knex( config.knex );
+
+    objection.Model.knex( _knex );
+
   	var app = express();
 
   	app.set( 'port', 3000 );

@@ -22,7 +22,7 @@ export class UserList
                     "</tr>" +
                     "<tr>" +
                       "<td class=\"list-field\">Setor: </td>" +
-                      "<td class=\"list-value\">" + user.ref_sector + "</td>" +
+                      "<td class=\"list-value\">" + user.sector.name + "</td>" +
                     "</tr>" +
                   "</table>";
       }

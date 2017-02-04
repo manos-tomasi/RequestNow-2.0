@@ -13,7 +13,7 @@ export class AppGuard implements CanActivate
         {
             return true;
         }
-
+    
         this.router.navigate( [ '/' ] );
 
         window.location.reload();
