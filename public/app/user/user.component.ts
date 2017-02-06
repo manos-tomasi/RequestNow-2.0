@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserList } from './user.list';
 import { User } from './user';
 import { UserService} from './user.service';
@@ -8,13 +9,12 @@ declare var Message : any;
 
 @Component({
   selector: 'app-user',
-  templateUrl: './user.component.html',
-  providers: [ UserService ]
+  templateUrl: './user.component.html'
 })
 
 export class UserComponent
 {
-    constructor( private service : UserService )
+    constructor( private service : UserService, private router : Router )
     {
         service.getAll().subscribe(
             users => this.list.setItems( users )
@@ -23,6 +23,7 @@ export class UserComponent
 
     add( self : this )
     {
+        self.router.navigate( [ '/user-form' ] );
     }
 
     delete( self : this )

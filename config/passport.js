@@ -1,10 +1,11 @@
 /* global require, module, app */
 
-var passport         = require( 'passport' ),
-    LocalStrategy    = require('passport-local').Strategy;
-    FacebookStrategy = require( 'passport-facebook' ).Strategy;
+const passport         = require( 'passport' );
+const LocalStrategy    = require('passport-local').Strategy;
+const FacebookStrategy = require( 'passport-facebook' ).Strategy;
+const Encryption       = require( '../app/util/Encryption.js' );
 
-module.exports = function()
+module.exports = function( app )
 {
     passport.use( new FacebookStrategy
     ( {
@@ -15,33 +16,6 @@ module.exports = function()
       },
       function( accessToken, refreshToken, profile, done )
       {
-          var user = {};
-
-          user.email   = profile._json.email;
-          user.name    = profile._json.name;
-          user.picture = profile._json.picture.data.url;
-          user.role    = 'Operador';
-
-          User.findOneAndUpdate( { email: user.email },
-          {
-              name: user.name,
-              picture: user.picture
-          },
-          function (err, _user )
-          {
-              if ( _user ) return done( err, _user );
-
-              User.create( user, function( error, _user )
-              {
-                  if ( error )
-                  {
-                      res.status( 500 ).json( composeError( error ) );
-                  }
-
-                  return done( err, _user );
-              } );
-
-          } );
       }
     ) );
 
@@ -59,20 +33,19 @@ module.exports = function()
          */
         function( login, password, done )
         {
-            var _query = "select * from users where login = '" + login + "' and password = '" + password + "';";
-
-            console.log( _query );
-
-            Database.getInstance().query( _query, function( result )
+            app.models.User.query()
+            .where( 'login', login )
+            .andWhere( 'password', Encryption.getHash( password ) )
+            .then( function( result )
             {
-                  var res = result[0];
+                var user = result[0] || undefined;
 
-                  if ( ! res )
-                  {
-                      return done( 'Confirme o Login e/ou Senha', false );
-                  }
+                if ( ! user )
+                {
+                    return done( null, false );
+                }
 
-                  return done( null, res );
+                return done( null, user );
             } );
         }
     ) );
@@ -82,8 +55,6 @@ module.exports = function()
      */
     passport.serializeUser( function( user, done )
     {
-        console.log( user );
-
         done( null, user.id );
     } );
 
@@ -92,9 +63,9 @@ module.exports = function()
      */
     passport.deserializeUser( function( id, done )
     {
-        var _query = "select * from users where id = " + id;
-
-        Database.getInstance().query( _query, function( result )
+        app.models.User.query()
+        .where( 'id', id )
+        .then( function( user )
         {
             done( null, user );
         } );

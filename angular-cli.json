@@ -31,7 +31,8 @@
           "vendor/materialize/dist/js/materialize.min.js",
           "vendor/sweetalert/dist/sweetalert.min.js",
           "assets/Message.js",
-          "assets/application.js"
+          "assets/application.js",
+          "assets/Session.js"
       ]
     }
   ],

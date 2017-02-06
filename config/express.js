@@ -13,7 +13,6 @@ var express        = require( 'express' ),
 
 module.exports = function()
 {
-
     var _knex = knex( config.knex );
 
     objection.Model.knex( _knex );

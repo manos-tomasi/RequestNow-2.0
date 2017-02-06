@@ -4,44 +4,70 @@ import { Http } from '@angular/http';
 import { User } from '../user/user';
 import { Emitter } from '../util/emitter';
 import { AbstractService } from '../util/abstract.service';
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+
+declare var Session;
 
 @Injectable()
 export class LoginService
     extends
       AbstractService<User>
 {
-    private activeUser : User;
-
     constructor( private router : Router, _http : Http)
     {
         super( '/api/login/', _http );
     }
 
-    login( user : User )
+    login( user : User, callback : Function )
     {
-        let authenticate = user.password === 'admin' &&
-                           user.login    === 'artur.tomasi';
+        let data = {
+          username : user.login,
+          password : user.password
+        };
 
-        user.name = "Artur Tomasi";
-        user.login = "artur.tomasi";
-        user.mail ="tomasi.artur@gmail.com";
-        user.password = "admin";
+        return this._http.post( this._url, data )
+                         .map( this.extractData )
+                         .catch( ( res ) =>
+                         {
+                            callback();
 
-        this.activeUser = authenticate ? user : null;
+                            return Observable.throw( "Login Incorreto" );
+                         } )
+                         .subscribe( ( user : User ) =>
+                         {
+                             this.user( user );
 
-        this.redirect();
+                             this.redirect();
+                         } );
     }
+
 
     logout()
     {
-        this.activeUser = null;
+        this.user( null );
 
-        this.redirect();
+        return this._http.post( "api/logout/", this.user() )
+                         .map( this.extractData )
+                         .catch( this.handleError )
+                         .subscribe( (user) => this.redirect() );
+    }
+
+    user( user: User = undefined )
+    {
+        if ( user === undefined )
+        {
+            return Session.get( "ActiveUser" );
+        }
+
+        Session.put( "ActiveUser", user );
     }
 
     redirect()
     {
-        Emitter.on( Emitter.ON_LOGIN ).emit( this.activeUser );
+        Emitter.on( Emitter.ON_LOGIN ).emit( this.user() );
 
         if ( this.isAuthenticate() )
         {
@@ -56,7 +82,6 @@ export class LoginService
 
     isAuthenticate()
     {
-        return this.activeUser !== null &&
-               this.activeUser !== undefined;
+        return this.user();
     }
 }

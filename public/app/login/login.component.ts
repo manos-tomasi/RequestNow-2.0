@@ -16,13 +16,10 @@ export class LoginComponent implements OnInit
 
     login( u : User )
     {
-        this.loginService.login( u );
-
-        if ( ! this.loginService.isAuthenticate() )
+        this.loginService.login( u, function( error )
         {
-            this.ngOnInit();
-
-            $( '#inputLogin' ).focus();
+          $( '#login' ).focus();
+          $( '#error #login' ).val( "" );
 
             $( '#login' ).effect( "bounce", "swith", function()
             {
@@ -30,10 +27,10 @@ export class LoginComponent implements OnInit
 
                 setTimeout( function()
                 {
-                    $( '#error-login' ).hide( 'fade' );
+                  $( '#error-login' ).hide( 'fade' );
                 }, 3000 );
             } );
-        }
+        } );
     }
 
     ngOnInit()

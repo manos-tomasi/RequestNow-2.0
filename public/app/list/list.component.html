@@ -1,9 +1,9 @@
-<div class="input-field col s12">
+<div class="input-field col s12" style="height: 50px;">
   <i class="fa fa-filter prefix"></i>
   <input id="find" type="text" [(ngModel)]="filter">
   <label for="find">Buscar</label>
 </div>
-<ul *ngIf="model" class="collection list-content">
+<ul *ngIf="model" class="collection list-overflow">
   <li *ngFor="let item of getItems();"
       [class]="model.getSelectedItem() === item ? 'list-content-selected' : 'list-content'"
       (click)="select( item )">

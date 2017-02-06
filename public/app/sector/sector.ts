@@ -4,5 +4,5 @@ export class Sector
   extends
     Model
 {
-     name       : string = "";
+     name : string = "";
 }

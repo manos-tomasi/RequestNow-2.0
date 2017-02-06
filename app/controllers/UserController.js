@@ -1,21 +1,23 @@
+const DefaultController = require('../util/DefaultController.js');
+const Encryption = require('../util/Encryption.js');
+
 module.exports = function ( app )
 {
-    var User = app.models.User;
+    var ctrl = new DefaultController( app.models.User, "sector" );
 
-    var Controller = {};
-
-    Controller.getUsers = function( req, res )
+    ctrl.beforeAddItem = function( req, callback )
     {
-        console.log( "here" );
+        var item = req.body;
 
-        User.query().eager('sector').then( function( _users )
+        if ( item.password )
         {
-            console.log( "users" );
-            console.log( _users );
+            item.password = Encryption.getHash( item.password );
 
-            res.json( _users );
-        } );
+            req.body = item;
+        }
+
+        callback();
     }
 
-    return Controller;
+    return ctrl;
 }

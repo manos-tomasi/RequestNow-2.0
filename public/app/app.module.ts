@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login/login.service';
+import { UserService } from './user/user.service';
+import { SectorService } from './sector/sector.service';
 import { AppGuard } from './app.guard';
 
 import { Routing } from './app.routes';
@@ -15,8 +17,11 @@ import { HomeButtonComponent } from './home-button/home-button.component';
 import { RequestComponent } from './request/request.component';
 import { DispatchComponent } from './dispatch/dispatch.component';
 import { UserComponent } from './user/user.component';
+import { UserForm } from './user/user.form';
 import { ListComponent } from './list/list.component';
 import { ApplicationButtonComponent } from './application-button/application-button.component';
+import { SectorComponent } from './sector/sector.component';
+import { SectorForm } from './sector/sector.form';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,10 @@ import { ApplicationButtonComponent } from './application-button/application-but
     DispatchComponent,
     UserComponent,
     ListComponent,
-    ApplicationButtonComponent
+    ApplicationButtonComponent,
+    UserForm,
+    SectorComponent,
+    SectorForm
   ],
   imports: [
     BrowserModule,
@@ -39,6 +47,8 @@ import { ApplicationButtonComponent } from './application-button/application-but
   ],
   providers: [
     LoginService,
+    UserService,
+    SectorService,
     AppGuard
   ],
   bootstrap: [AppComponent]
