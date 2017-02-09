@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Sector } from './sector';
 
-declare var Message : any;
+declare var Materialize : any;
 
 @Component({
   selector: 'sector-form',
@@ -10,5 +11,20 @@ declare var Message : any;
 
 export class SectorForm
 {
+    constructor( private router : Router )
+    {
 
+    }
+
+    cancel()
+    {
+        this.router.navigate( [ 'sector' ] );
+    }
+
+    save()
+    {
+         Materialize.toast( 'Salvo com sucesso!', 40000, 'rounded' );
+
+         this.router.navigate( [ 'sector' ] );
+    }
 }

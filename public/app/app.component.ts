@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {LoginService} from './login/login.service';
 
-declare var Session;
-
 @Component({
     selector: 'my-app',
     templateUrl:  './app.component.html'
@@ -19,6 +17,11 @@ export class AppComponent
 
     hasLogin()
     {
-        return Session.get( "ActiveUser" );
+        return this.loginService.user();
+    }
+
+    getName()
+    {
+        return this.loginService.user().name;
     }
 }

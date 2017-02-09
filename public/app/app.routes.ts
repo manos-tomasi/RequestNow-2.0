@@ -14,14 +14,14 @@ import { AppGuard } from './app.guard';
 
 const APP_ROUTES: Routes =
 [
-    { path: '',         component : LoginComponent },
-    { path: 'home',     component : HomeComponent,     canActivate: [AppGuard] },
-    { path: 'user',     component : UserComponent,     canActivate: [AppGuard] },
-    { path: 'sector',     component : SectorComponent,     canActivate: [AppGuard] },
-    { path: 'user-form',component : UserForm, canActivate: [AppGuard] },
-    { path: 'sector-form',component : SectorForm, canActivate: [AppGuard] },
-    { path: 'request',  component : RequestComponent,  canActivate: [AppGuard] },
-    { path: 'dispatch', component : DispatchComponent, canActivate: [AppGuard] }
+    { path: '',               component : LoginComponent },
+    { path: 'home',           component : HomeComponent,        canActivate: [AppGuard] },
+    { path: 'user',           component : UserComponent,        canActivate: [AppGuard] },
+    { path: 'sector',         component : SectorComponent,      canActivate: [AppGuard] },
+    { path: 'user-form',      component : UserForm,             canActivate: [AppGuard] },
+    { path: 'sector-form',    component : SectorForm,           canActivate: [AppGuard] },
+    { path: 'request',        component : RequestComponent,     canActivate: [AppGuard] },
+    { path: 'dispatch',       component : DispatchComponent,    canActivate: [AppGuard] }
 ];
 
 export const Routing : ModuleWithProviders = RouterModule.forRoot( APP_ROUTES );
