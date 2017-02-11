@@ -8,5 +8,5 @@ function dropdown( elem )
 
 function collapsible( elem )
 {
-   $( elem ).parent().parent().collapsible( { accordion: false } );
+    $( elem ).parent().parent().collapsible( { accordion: false } );
 }

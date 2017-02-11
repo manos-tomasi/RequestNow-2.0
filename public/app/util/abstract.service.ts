@@ -64,7 +64,7 @@ export class AbstractService<T extends Model>
             let body = res.json();
 
             console.log( body );
-            
+
             return body || { };
         }
 

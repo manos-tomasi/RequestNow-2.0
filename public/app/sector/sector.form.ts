@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Sector } from './sector';
+import { SectorService } from './sector.service';
 
 declare var Materialize : any;
+declare var Message : any;
 
 @Component({
   selector: 'sector-form',
@@ -11,7 +14,12 @@ declare var Materialize : any;
 
 export class SectorForm
 {
-    constructor( private router : Router )
+    public sectorForm = this.fb.group(
+    {
+      'name': [ null, Validators.compose( [ Validators.required, Validators.maxLength( 80 ) ] ) ]
+    } );
+
+    constructor( private router : Router, public fb: FormBuilder, public service : SectorService )
     {
 
     }
@@ -23,8 +31,24 @@ export class SectorForm
 
     save()
     {
-         Materialize.toast( 'Salvo com sucesso!', 40000, 'rounded' );
+        console.log( this.sectorForm );
 
-         this.router.navigate( [ 'sector' ] );
+        if ( this.sectorForm.valid )
+        {
+            console.log( this.sectorForm.value );
+
+            this.service.save( this.sectorForm.value );
+
+            Materialize.toast( 'Salvo com sucesso!', 2000, 'rounded' );
+
+            this.router.navigate( [ 'sector' ] );
+        }
+
+        else
+        {
+            Message.alert( "Preencha todos os campos" );
+        }
+
+
     }
 }

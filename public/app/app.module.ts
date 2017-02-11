@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -43,6 +43,7 @@ import { SectorForm } from './sector/sector.form';
     FormsModule,
     HttpModule,
     JsonpModule,
+    ReactiveFormsModule,
     Routing
   ],
   providers: [

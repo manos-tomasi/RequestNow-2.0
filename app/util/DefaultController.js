@@ -34,26 +34,33 @@ module.exports = function ( _model , _eager )
 
     DefaultController.addItem = function ( req, res )
     {
+        console.log( req.body );
+
         DefaultController.beforeAddItem( req, function()
         {
-            if ( req.params.body )
+            console.log( req.body );
+
+            if ( req.body )
             {
-              _model.query()
-              .insertAndFetch( req.body )
-              .then( function( _item )
-              {
-                res.json( _item );
-              } );
+                _model.query()
+                .insertAndFetch( req.body )
+                .then( function( _item )
+                {
+                    res.json( _item );
+                } );
             }
         } );
     };
 
     DefaultController.updateItem = function ( req, res )
     {
-        if ( req.params.body )
+
+        console.log( req.body );
+
+        if ( req.body )
         {
             _model.query()
-            .updateAndFetchById( req.params.body.id, req.params.body )
+            .updateAndFetchById( req.body.id, req.body )
             .then( function( _item )
             {
                 res.json( _item );

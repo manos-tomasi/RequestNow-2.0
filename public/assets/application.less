@@ -111,8 +111,8 @@ input
 		color: @main-color-black;
 }
 
-input:focus,
-textarea:focus
+input:focus:not([readonly]),
+textarea:focus:not([readonly])
 {
 	  border-bottom: 1px solid @main-color-hover !important;
 	  box-shadow: 0 1px 0 0 @main-color-hover !important;
@@ -243,4 +243,26 @@ textarea:focus
 		left: 40%;
 		right: 40%;
 		top: auto !important;
+}
+
+.backdrop
+{
+		background: @main-color !important;
+}
+
+.invalid+label:after
+{
+		font-size: 0.8rem !important;
+		transform: translateY(-140%) !important;
+}
+
+.input-field label:not(.label-icon).active::after
+{
+		transform: none !important;
+}
+input:focus.invalid,
+input.invalid
+{
+		border-bottom: 1px solid #F44336 !important;
+    box-shadow: 0 1px 0 0 #F44336 !important;
 }
